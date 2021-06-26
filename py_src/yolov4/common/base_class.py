@@ -151,7 +151,7 @@ class BaseClass:
         if is_image:
             # support np.ndarray media_path
             if type(media_path) == np.ndarray:
-                frame_rgb = media_path
+                frame_rgb = frame = media_path
             else:
                 frame = cv2.imread(media_path)
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
