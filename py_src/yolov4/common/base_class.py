@@ -149,8 +149,12 @@ class BaseClass:
         cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
 
         if is_image:
-            frame = cv2.imread(media_path)
-            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # support np.ndarray media_path
+            if type(media_path) == np.ndarray:
+                frame_rgb = media_path
+            else:
+                frame = cv2.imread(media_path)
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
             start_time = time.time()
             bboxes = self.predict(frame_rgb, prob_thresh=prob_thresh)
